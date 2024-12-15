@@ -104,7 +104,7 @@ const Login = () => {
         name.length === 0));
   return (
     <div className="bg-sky-400 flex justify-center items-center min-h-screen">
-    <div className="rounded-lg flex border h-2/3 w-2/3 mb-20 shadow-lg justify-center bg-white">
+    <div className={`rounded-lg flex border ${showLoginForm? 'h-2/3 w-2/3': 'h-[70%] w-[70%]'}  mb-20 shadow-lg justify-center bg-white`}>
       <img src={loginImg} alt="" className="h-1/2 w-1/2 object-contain" />
   
       <div className="flex items-center justify-center mt-7 ml-14 md:ml-0 md:mt-0 w-1/2">

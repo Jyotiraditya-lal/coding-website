@@ -5,6 +5,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { Toast } from "primereact/toast";
+import user1 from '../../../assets/User1.png'
 
 const LoginContextProvider = ({ children }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -86,10 +87,13 @@ const LoginContextProvider = ({ children }) => {
   };
 
   const addUserHandler = (user) => {
+    const newUser = { ...user, imgUrl: user1 };
+
     const usersString = localStorage.getItem("Codingusers");
     const users = usersString ? JSON.parse(usersString) : [];
 
-    users.push(user);
+    users.push(newUser);
+    
     localStorage.setItem("Codingusers", JSON.stringify(users));
 
     toast.current.show({
@@ -97,7 +101,8 @@ const LoginContextProvider = ({ children }) => {
       summary: "Signed up Successful",
       detail: "User signed up successfully!",
     });
-  };
+};
+
 
   return (
     <>
