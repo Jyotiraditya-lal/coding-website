@@ -34,6 +34,23 @@ const NavBar = () => {
               <span>Home</span>
             </Link>
           </li>
+          <li>
+            <Link to="/problems" className="hover:text-blue-600 no-underline">
+              <i className="pi pi-list-check mt-1 mr-1"></i>
+              Problems
+            </Link>
+          </li>
+          {ctx.isLoggedin && (
+            <li>
+              <Link
+                to="/profile"
+                className="flex items-center space-x-1 hover:text-blue-600 no-underline"
+              >
+                <i className="pi pi-user mr-1"></i>
+                <span>Profile</span>
+              </Link>
+            </li>
+          )}
           {!ctx.isLoggedin && (
             <li>
               <Link
@@ -42,25 +59,6 @@ const NavBar = () => {
               >
                 <i className="pi pi-sign-in mr-1"></i>
                 <span>Login</span>
-              </Link>
-            </li>
-          )}
-          {ctx.isLoggedin && (
-            <li>
-              <Link to="/problems" className="hover:text-blue-600 no-underline">
-              <i className="pi pi-pencil mr-1"></i>
-                Problems
-              </Link>
-            </li>
-          )}
-          {ctx.isLoggedin && (
-            <li>
-              <Link
-                to="/profile"
-                className="flex items-center space-x-1 hover:text-blue-600 no-underline"
-              >
-                <i className="pi pi-id-card mr-1"></i>
-                <span>Profile</span>
               </Link>
             </li>
           )}

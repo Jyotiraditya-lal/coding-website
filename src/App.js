@@ -5,12 +5,15 @@ import Problemslist from './components/Problems/ProblemsList';
 import Problems from './components/Problems/Problems/Problems';
 import Profile from './components/Profile/Profile';
 import Login from './components/Login/Login';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import user1 from './assets/User1.png'
+import ContactUs from './components/ContactUs/ContactUs';
+import LoginContext from './components/Login/store/loginContext';
 
 function App() {
 
   const [users, setUsers] = useState([]);
+  const ctx= useContext(LoginContext)
 
   useEffect(() => {
     const usersString = localStorage.getItem('Codingusers');
@@ -57,8 +60,9 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/problems' element={<Problemslist/>} />
-      <Route path='/problems/:difficulty/:questionId' element={<Problems />} />
-      <Route path='/profile' element={<Profile />} />
+      {ctx.isLoggedin && <Route path='/problems/:difficulty/:questionId' element={<Problems />} />}
+      {ctx.isLoggedin && <Route path='/profile' element={<Profile />} />}
+      <Route path='/contact-us' element={<ContactUs />} />
       <Route path='/login' element={<Login />} />
       <Route path='*' element={<Home />} />
     </Routes>

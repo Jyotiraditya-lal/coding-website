@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-regular-svg-icons";
@@ -9,6 +9,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import user1 from "../../assets/User1.png";
 import user2 from "../../assets/User2.jpg";
 import user3 from "../../assets/User3.jpg";
+import cta from "../../assets/cta.jpg";
 import codingImg from "../../assets/codingImg.jpg";
 import NavBar from "../Layout/Navbar";
 
@@ -42,33 +43,49 @@ const Home = () => {
     },
   ];
 
-  const faq = [
+  const [faqs, setFaqs] = useState([
     {
       question: "What are coding challenges?",
       answer:
         "Coding challenges are problem-solving exercises that help you practice and improve your programming skills. They vary in difficulty and cover a wide range of topics to keep you engaged and learning.",
+      open: true,
     },
     {
       question: "How do the expert-led courses work?",
       answer:
         "Our expert-led courses are structured lessons taught by industry professionals. They include video lectures, hands-on exercises, and real-world examples to help you gain practical experience and learn new skills.",
+      open: false,
     },
     {
       question: "Is there a community where I can ask for help?",
       answer:
         "Yes! We have an active community of developers who are always ready to offer advice, answer questions, and share experiences. You can engage with others through forums, chat rooms, and project collaboration.",
+      open: false,
     },
     {
       question: "Can I build a portfolio with real-world projects?",
       answer:
         "Absolutely! Our platform includes real-world projects that are designed to help you build a strong portfolio. These projects will showcase your skills to potential employers and help you stand out in the job market.",
+      open: false,
     },
     {
       question: "Are the courses suitable for beginners?",
       answer:
         "Yes, we offer courses that cater to all skill levels, including beginners. You can start with foundational concepts and gradually progress to more advanced topics as you gain confidence and experience.",
+      open: false,
     },
-  ];
+  ]);
+
+  const toggleFAQ = (index) => {
+    setFaqs((prevFaqs) =>
+      prevFaqs.map((faq, idx) => {
+        if (idx === index) {
+          return { ...faq, open: !faq.open };
+        }
+        return { ...faq, open: false };
+      })
+    );
+  };
 
   const reviews = [
     {
@@ -96,9 +113,8 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <NavBar />
+      {/* <NavBar /> */}
 
-      
       <div className="relative w-full">
         <img
           src="https://img.freepik.com/premium-photo/person-coding-computer-vibrant-gradient-background-focusing-programming-text-displayed-monitor_923559-28370.jpg?w=1380"
@@ -175,6 +191,92 @@ const Home = () => {
         </div>
 
         <div class="pb-16"></div>
+      </div>
+
+      <div className="flex justify-center py-10">
+        <div className=" bg-[#61BADA] w-2/3 rounded-lg px-10 py-6 flex justify-between">
+          <div className="w-2/3">
+            <p className="text-[#61BADA] font-bold text-white text-2xl">
+              Need an expert?
+            </p>
+            <p className="text-gray-700 mt-2 text-white">
+              Get in touch with our team of professionals to help solve your
+              challenges and bring your ideas to life.
+            </p>
+            <button className="mt-2 bg-white text-[##61BADA] font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200">
+              Contact Us
+            </button>
+          </div>
+
+          <img src={cta} alt="" className="w-40 h-40 object-contain" />
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h1 class="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
+          Testimonials
+        </h1>
+
+        <div class="grid grid-cols-3 gap-8 mt-14 px-8 sm:px-12 lg:px-20">
+          {reviews.map((review) => (
+            <div class="bg-white border-gray-00 p-6 rounded-lg shadow-lg text-center bg-gradient-to-b from-white to-transparent">
+              <div class="flex justify-center">
+                <img src={review.img} alt="picture" class="rounded w-40" />
+
+                <div class="ml-4 mt-10">
+                  <p class="text-lg font-semibold">{review.name}</p>
+
+                  <div class="flex">
+                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+
+                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+
+                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+
+                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+
+                    <i class="pi pi-star-half-fill text-yellow-300 ml-1"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <p class="text-xl">"{review.review}"</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-16 mt-20">
+        <h1 class="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
+          Frequently Asked Questions
+        </h1>
+
+        <div className="mt-10 px-8 sm:px-12 lg:px-20 mt-14">
+          {faqs.map((faq, index) => (
+            <div className="border-b border-gray-300">
+              <div className="flex">
+                <i
+                  onClick={() => toggleFAQ(index)}
+                  className={`text-left py-3 cursor-pointer mt-1 ${
+                    faq.open ? "pi pi-angle-up" : "pi pi-angle-down"
+                  }`}
+                ></i>
+                <p
+                  className="text-lg font-semibold text-gray-800 mt-3 ml-5 cursor-pointer"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  {faq.question}
+                </p>
+              </div>
+
+              {faq.open && (
+                <p className="text-gray-600 mb-5 ml-9">{faq.answer}</p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );
