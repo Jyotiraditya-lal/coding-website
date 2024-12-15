@@ -48,7 +48,7 @@ function App() {
           imgUrl: user1
         },
       ];
-      localStorage.setItem('users', JSON.stringify(initialUsers));
+      localStorage.setItem('Codingusers', JSON.stringify(initialUsers));
       setUsers(initialUsers);
     } else {
       setUsers(JSON.parse(usersString));
