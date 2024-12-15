@@ -11,7 +11,6 @@ import user2 from "../../assets/User2.jpg";
 import user3 from "../../assets/User3.jpg";
 import cta from "../../assets/cta.jpg";
 import codingImg from "../../assets/codingImg.jpg";
-import NavBar from "../Layout/Navbar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -113,8 +112,6 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      {/* <NavBar /> */}
-
       <div className="relative w-full">
         <img
           src="https://img.freepik.com/premium-photo/person-coding-computer-vibrant-gradient-background-focusing-programming-text-displayed-monitor_923559-28370.jpg?w=1380"
@@ -167,30 +164,30 @@ const Home = () => {
         />
       </div>
 
-      <div class="bg-gray-500 mt-16 h-full">
-        <div class="pt-16"></div>
+      <div className="bg-gray-500 mt-16 h-full">
+        <div className="pt-16"></div>
 
-        <h1 class="text-3xl text-center font-bold text-white px-8 sm:px-12 lg:px-20">
+        <h1 className="text-3xl text-center font-bold text-white px-8 sm:px-12 lg:px-20">
           We provide
         </h1>
 
-        <div class="grid grid-cols-4 gap-8 mt-10 px-8 sm:px-12 lg:px-20">
+        <div className="grid grid-cols-4 gap-8 mt-10 px-8 sm:px-12 lg:px-20">
           {features.map((feature) => (
-            <div class="bg-gray-100 border-gray-300 p-6 rounded">
-              <div class="mb-5">
+            <div className="bg-gray-100 border-gray-300 p-6 rounded">
+              <div className="mb-5">
                 <FontAwesomeIcon
                   icon={feature.icon}
                   className="text-left text-2xl text-blue-400"
                 ></FontAwesomeIcon>
-                <p class="text-xl font-semibold mt-2">{feature.title}</p>
+                <p className="text-xl font-semibold mt-2">{feature.title}</p>
               </div>
 
-              <p class="text-gray-600">{feature.description}</p>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>
 
-        <div class="pb-16"></div>
+        <div className="pb-16"></div>
       </div>
 
       <div className="flex justify-center py-10">
@@ -212,44 +209,44 @@ const Home = () => {
         </div>
       </div>
 
-      <div class="mt-16">
-        <h1 class="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
+      <div className="mt-16">
+        <h1 className="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
           Testimonials
         </h1>
 
-        <div class="grid grid-cols-3 gap-8 mt-14 px-8 sm:px-12 lg:px-20">
+        <div className="grid grid-cols-3 gap-8 mt-14 px-8 sm:px-12 lg:px-20">
           {reviews.map((review) => (
-            <div class="bg-white border-gray-00 p-6 rounded-lg shadow-lg text-center bg-gradient-to-b from-white to-transparent">
-              <div class="flex justify-center">
-                <img src={review.img} alt="picture" class="rounded w-40" />
+            <div className="bg-white border-gray-00 p-6 rounded-lg shadow-lg text-center bg-gradient-to-b from-white to-transparent">
+              <div className="flex justify-center">
+                <img src={review.img} alt="picture" className="rounded w-40" />
 
-                <div class="ml-4 mt-10">
-                  <p class="text-lg font-semibold">{review.name}</p>
+                <div className="ml-4 mt-10">
+                  <p className="text-lg font-semibold">{review.name}</p>
 
-                  <div class="flex">
+                  <div className="flex">
                     <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
 
-                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+                    <i className="pi pi-star-fill text-yellow-300 ml-1"></i>
 
-                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+                    <i className="pi pi-star-fill text-yellow-300 ml-1"></i>
 
-                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+                    <i className="pi pi-star-fill text-yellow-300 ml-1"></i>
 
-                    <i class="pi pi-star-half-fill text-yellow-300 ml-1"></i>
+                    <i className="pi pi-star-half-fill text-yellow-300 ml-1"></i>
                   </div>
                 </div>
               </div>
 
-              <div class="mb-5">
-                <p class="text-xl">"{review.review}"</p>
+              <div className="mb-5">
+                <p className="text-xl">"{review.review}"</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div class="mb-16 mt-20">
-        <h1 class="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
+      <div className="mb-16 mt-20">
+        <h1 className="text-3xl text-center font-bold mt-10 px-8 sm:px-12 lg:px-20">
           Frequently Asked Questions
         </h1>
 
