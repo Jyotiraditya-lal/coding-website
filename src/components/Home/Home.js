@@ -200,7 +200,7 @@ const Home = () => {
               Get in touch with our team of professionals to help solve your
               challenges and bring your ideas to life.
             </p>
-            <button className="mt-2 bg-white text-[##61BADA] font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200">
+            <button className="mt-2 bg-white text-[##61BADA] font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-200" onClick={()=>{navigate('/contact-us')}}>
               Contact Us
             </button>
           </div>
