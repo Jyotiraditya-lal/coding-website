@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginContext from "./loginContext";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import { Toast } from "primereact/toast";
 
 const LoginContextProvider = ({ children }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [toast, setToast] = useState({ show: false, type: "", title: "", message: "" });
   const navigate = useNavigate();
+  const toast = React.useRef(null);
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("loggedin");
     setIsLoggedin(loggedInStatus === "true");
   }, []);
-
-  const showToast = (type, title, message) => {
-    setToast({ show: true, type, title, message });
-    setTimeout(() => setToast({ show: false, type: "", title: "", message: "" }), 3000);
-  };
 
   const loginHandler = (email, password) => {
     const usersString = localStorage.getItem("Codingusers");
@@ -30,13 +27,25 @@ const LoginContextProvider = ({ children }) => {
         localStorage.setItem("loggedin", "true");
         setIsLoggedin(true);
         navigate("/");
-        showToast("success", "Login Successful", `Welcome back, ${user.name}!`);
+        toast.current.show({
+          severity: "success",
+          summary: "Login Successful",
+          detail: `Welcome back, ${user.name}!`,
+        });
         localStorage.setItem("LoggedinUser", JSON.stringify(user));
       } else {
-        showToast("danger", "Login Failed", "Incorrect password. Please try again.");
+        toast.current.show({
+          severity: "error",
+          summary: "Login Failed",
+          detail: "Incorrect password. Please try again.",
+        });
       }
     } else {
-      showToast("warning", "User Not Found", "No account found with this email.");
+      toast.current.show({
+        severity: "warn",
+        summary: "User Not Found",
+        detail: "No account found with this email.",
+      });
     }
   };
 
@@ -44,10 +53,25 @@ const LoginContextProvider = ({ children }) => {
     localStorage.removeItem("loggedin");
     localStorage.removeItem("LoggedinUser");
     setIsLoggedin(false);
-    let message = "You have successfully logged out.";
-    if (from === "delete") message = "User deleted successfully.";
-    else if (from === "password") message = "Password was successfully changed.";
-    showToast("info", "Logged Out", message);
+    if (from === "navbar") {
+      toast.current.show({
+        severity: "info",
+        summary: "Logged Out",
+        detail: "You have successfully logged out.",
+      });
+    } else if (from === "delete") {
+      toast.current.show({
+        severity: "info",
+        summary: "Deleted successfully",
+        detail: "User deleted successfully",
+      });
+    } else {
+      toast.current.show({
+        severity: "info",
+        summary: "Password successfully changed",
+        detail: "Password was successfully changed",
+      });
+    }
     navigate("/");
   };
 
@@ -68,30 +92,17 @@ const LoginContextProvider = ({ children }) => {
     users.push(user);
     localStorage.setItem("Codingusers", JSON.stringify(users));
 
-    showToast("success", "Signed up Successful", "User signed up successfully!");
+    toast.current.show({
+      severity: "success",
+      summary: "Signed up Successful",
+      detail: "User signed up successfully!",
+    });
   };
 
   return (
     <>
-      {toast.show && (
-        <div
-          className={`toast position-fixed bottom-0 end-0 m-3 bg-${toast.type}`}
-          role="alert"
-          style={{ zIndex: 1050 }}
-        >
-          <div className="toast-header">
-            <strong className="me-auto">{toast.title}</strong>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-              onClick={() => setToast({ show: false, type: "", title: "", message: "" })}
-            ></button>
-          </div>
-          <div className="toast-body">{toast.message}</div>
-        </div>
-      )}
+      <Toast ref={toast} />
+
       <LoginContext.Provider
         value={{
           isLoggedin,

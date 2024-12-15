@@ -65,8 +65,8 @@ const NavBar = () => {
           {ctx.isLoggedin && (
             <li>
               <button
-                onClick={() => ctx.logout()}
-                className="flex items-center space-x-1 hover:text-red-600 focus:outline-none no-underline"
+                onClick={() => ctx.logout('navbar')}
+                className="flex items-center space-x-1 text-red-700 hover:text-red-600 focus:outline-none no-underline"
               >
                 <i className="pi pi-sign-out mr-1"></i>
                 <span>Logout</span>
