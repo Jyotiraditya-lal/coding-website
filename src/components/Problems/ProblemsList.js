@@ -77,7 +77,7 @@ const ProblemsList = () => {
         />
       </div>
 
-      <p className="text-3xl font-bold text-center py-10"><i>"Code. Create. Conquer. Transform ideas into reality, one line at a time!"</i></p>
+      <p className="text-3xl font-bold text-center py-10"><i>"Innovate. Code. Repeat.. Transform ideas into reality, one line at a time!"</i></p>
 
       <div className="container mt-4">
         <p className="text-4xl font-bold text-gray-800">Lets get started</p>
