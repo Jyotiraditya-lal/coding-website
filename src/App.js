@@ -64,7 +64,7 @@ function App() {
       {ctx.isLoggedin && <Route path='/profile' element={<Profile />} />}
       <Route path='/contact-us' element={<ContactUs />} />
       <Route path='/login' element={<Login />} />
-      <Route path='*' element={<Home />} />
+      <Route path='*' element={<Login />} />
     </Routes>
   );
 }
