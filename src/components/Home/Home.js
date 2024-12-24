@@ -222,7 +222,7 @@ const Home = () => {
                   <p className="text-lg font-semibold">{review.name}</p>
 
                   <div className="flex">
-                    <i class="pi pi-star-fill text-yellow-300 ml-1"></i>
+                    <i className="pi pi-star-fill text-yellow-300 ml-1"></i>
 
                     <i className="pi pi-star-fill text-yellow-300 ml-1"></i>
 
