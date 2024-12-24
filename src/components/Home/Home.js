@@ -164,8 +164,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="bg-gray-500 mt-16 h-full">
-        <div className="pt-16"></div>
+      <div className="bg-gray-500 mt-16 h-full py-16">
 
         <h1 className="text-3xl text-center font-bold text-white px-8 sm:px-12 lg:px-20">
           We provide
@@ -187,7 +186,6 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="pb-16"></div>
       </div>
 
       <div className="flex justify-center py-10">
